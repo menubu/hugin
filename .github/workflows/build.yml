@@ -1,0 +1,22 @@
+name: Build FP300Service
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build solution
+        working-directory: Hugin-T300-Vx675/CSharp
+        run: msbuild FP300Service_15.sln /t:Rebuild /p:Configuration=Release /p:Platform="Any CPU"
