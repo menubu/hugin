@@ -20,3 +20,9 @@ jobs:
       - name: Build solution
         working-directory: Hugin-T300-Vx675/CSharp
         run: msbuild FP300Service_15.sln /t:Rebuild /p:Configuration=Release /p:Platform="Any CPU"
+
+      - name: Upload FP300Service artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FP300Service-Release
+          path: Hugin-T300-Vx675/CSharp/FP300Service/bin/Release
